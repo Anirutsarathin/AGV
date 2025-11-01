@@ -57,17 +57,18 @@ void loop() {
   if (Serial.available()) {
     String cmd = Serial.readStringUntil('\n');
     cmd.trim();
-   if (cmd == "FORWARD") {
-  moveMotor(turnSpeed, turnSpeed, true, true);
-}
-else if (cmd == "BACKWARD") {
+if (cmd == "FORWARD") {
   moveMotor(turnSpeed, turnSpeed, false, false);
 }
-else if (cmd == "LEFT") {
+else if (cmd == "BACKWARD") {
   moveMotor(maxSpeed, maxSpeed, true, false);
 }
+else if (cmd == "LEFT") {
+	moveMotor(turnSpeed, turnSpeed, true, true);
+}
 else if (cmd == "RIGHT") {
-  moveMotor(maxSpeed, maxSpeed, false, true);
+  moveMotor(turnSpeed, turnSpeed, false, false);
+
 }
 else if (cmd == "UP") {
   Serial.println("⬆️ Going Up");
