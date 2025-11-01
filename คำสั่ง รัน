@@ -1,2 +1,8 @@
 #run keyboard
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
+
+#path
+/ros2_ws/src/agv_nav/agv_nav/odometry
+
+#Lidar 
+ros2_ws$ ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
