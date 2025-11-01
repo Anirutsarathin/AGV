@@ -9,6 +9,6 @@ ros2_ws$ ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
 
 #build
 cd ~/ros2_ws
-colcon build --packages-select agv_nav
+colcon build --packages-select ydlidar_ros2_driver agv_nav
 source install/setup.bash
 ros2 launch agv_nav slam_launch.py
