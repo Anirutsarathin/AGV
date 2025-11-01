@@ -6,3 +6,9 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard
 
 #Lidar 
 ros2_ws$ ros2 launch ydlidar_ros2_driver ydlidar_launch_view.py
+
+#build
+cd ~/ros2_ws
+colcon build --packages-select agv_nav
+source install/setup.bash
+ros2 launch agv_nav slam_launch.py
