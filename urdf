@@ -1,0 +1,408 @@
+<?xml version="1.0"?>
+<robot name="my_robot">
+
+  <!-- ========================================================= -->
+  <!-- BASE LINK = Root ของหุ่นยนต์ -->
+  <!-- ========================================================= -->
+<link name="base_link">
+  <visual>
+    <origin xyz="0 0 0.15"/> <!-- เดิม 0.14, ยกขึ้น 1 cm -->
+    <geometry>
+      <box size="0.85 0.4 0.15"/>
+    </geometry>
+    <material name="gray">
+      <color rgba="0.5 0.5 0.5 1"/>
+    </material>
+  </visual>
+  <collision>
+    <origin xyz="0 0 0.15"/>
+    <geometry>
+      <box size="0.85 0.4 0.15"/>
+    </geometry>
+  </collision>
+  <inertial>
+    <mass value="10.0"/>
+    <inertia ixx="1" iyy="1" izz="1" ixy="0" ixz="0" iyz="0"/>
+  </inertial>
+</link>
+
+
+  <!-- ========================================================= -->
+  <!-- BASE MID -->
+  <!-- ========================================================= -->
+  <link name="base_mid">
+    <visual>
+      <origin xyz="-0.125 0 0.26"/>
+      <geometry>
+        <box size="0.60 0.4 0.13"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_mid_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_mid"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <!-- ========================================================= -->
+  <!-- BASE TOP -->
+  <!-- ========================================================= -->
+  <link name="base_top">
+    <visual>
+      <origin xyz="0 0 0.35"/>
+      <geometry>
+        <box size="0.85 0.4 0.05"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_top_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_top"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <!-- ========================================================= -->
+  <!-- BASE FRONT -->
+  <!-- ========================================================= -->
+  <link name="base_front">
+    <visual>
+      <origin xyz="0.312 0 0.53"/>
+      <geometry>
+        <box size="0.225 0.4 0.40"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_front"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <!-- ========================================================= -->
+  <!-- FRONT LEFT WHEEL -->
+  <!-- ========================================================= -->
+  <link name="front_left_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.08"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.08"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+<joint name="front_left_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="front_left_wheel"/>
+  <origin xyz="0.15 0.15 0.06"/> <!-- เดิม 0.05 → ยกขึ้น 1 cm -->
+  <axis xyz="0 1 0"/>
+</joint>
+  <!-- ========================================================= -->
+  <!-- FRONT RIGHT WHEEL -->
+  <!-- ========================================================= -->
+  <link name="front_right_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.08"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.08"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+<joint name="front_right_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="front_right_wheel"/>
+  <origin xyz="0.15 -0.15 0.06"/> <!-- เดิม 0.05 -->
+  <axis xyz="0 1 0"/>
+</joint>
+
+
+  <!-- ========================================================= -->
+  <!-- REAR LEFT WHEEL -->
+  <!-- ========================================================= -->
+  <link name="rear_left_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.06"/>
+      </geometry>
+      <material name="orange">
+        <color rgba="1 0.5 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+       <cylinder radius="0.065" length="0.06"/>
+
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+<!-- REAR LEFT WHEEL -->
+<joint name="rear_left_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="rear_left_wheel"/>
+  <origin xyz="-0.27 0.15 0.06"/>
+  <axis xyz="1 0 0"/> <!-- ให้หมุนตามแกน Y เหมือนล้อหน้า -->
+</joint>
+  <!-- REAR RIGHT WHEEL -->
+  <link name="rear_right_wheel">
+    <visual>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.065" length="0.06"/>
+
+      </geometry>
+      <material name="orange">
+        <color rgba="1 0.5 0 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
+      <geometry>
+       <cylinder radius="0.065" length="0.06"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" iyy="0.01" izz="0.01" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+<!-- REAR RIGHT WHEEL -->
+<joint name="rear_right_wheel_joint" type="continuous">
+  <parent link="base_link"/>
+  <child link="rear_right_wheel"/>
+  <origin xyz="-0.27 -0.15 0.06"/>
+  <axis xyz="1 0 0"/>
+</joint>
+   <!-- ========================================================= -->
+  <!-- LIDAR -->
+  <!-- ========================================================= -->
+  <link name="lidar">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.06" length="0.05"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 1 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.06" length="0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_mid"/>
+    <child link="lidar"/>
+    <!-- วาง Lidar บนหลังคา (กลางรถ สูงขึ้น 0.35m) -->
+    <origin xyz="0.34 0 0.26"/>
+  </joint>
+  <!-- ========================================================= -->
+  <!-- IMU SENSOR -->
+  <!-- ========================================================= -->
+  <link name="imu">
+    <visual>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.05"/> <!-- ปรับขนาดให้เล็กลง -->
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/> <!-- สีแดง -->
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.03" length="0.05"/> <!-- ปรับขนาดให้เล็กลง -->
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+  </link>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_mid"/>  <!-- กำหนด link ของ IMU ต่อจากส่วน base_mid ของหุ่นยนต์ -->
+    <child link="imu"/>
+    <origin xyz="0.23 0 0.26"/>  <!-- วาง IMU ไว้บนหลังคาหุ่นยนต์ที่ตำแหน่งเดียวกับ LIDAR -->
+  </joint>
+
+
+<!-- กำหนด Physics ของล้อหน้า -->
+<gazebo reference="front_left_wheel">
+  <mu1>1.0</mu1>   <!-- แรงเสียดทานทิศ 1 -->
+  <mu2>1.0</mu2>   <!-- แรงเสียดทานทิศ 2 -->
+  <kp>1000000.0</kp>
+  <kd>10.0</kd>
+  <fdir1>0 1 0</fdir1> <!-- ทิศการกลิ้ง (แกนหมุนของล้อ) -->
+</gazebo>
+
+<gazebo reference="front_right_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp>
+  <kd>10.0</kd>
+  <fdir1>0 1 0</fdir1>
+</gazebo>
+
+<gazebo reference="rear_left_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp>
+  <kd>10.0</kd>
+  <fdir1>0 1 0</fdir1>
+</gazebo>
+
+<gazebo reference="rear_right_wheel">
+  <mu1>1.0</mu1>
+  <mu2>1.0</mu2>
+  <kp>1000000.0</kp>
+  <kd>10.0</kd>
+  <fdir1>0 1 0</fdir1>
+</gazebo>
+
+<!-- ========================================================= -->
+  <!-- Gazebo Plugin for Diff Drive -->
+  <!-- ========================================================= -->
+  <gazebo>
+    <plugin name="diff_drive" filename="libgazebo_ros_diff_drive.so">
+      <ros>
+        <namespace>/</namespace>
+        <remapping>cmd_vel:=cmd_vel</remapping>
+        <remapping>odom:=odom</remapping>
+      </ros>
+      <update_rate>50</update_rate>
+      <left_joint>front_left_wheel_joint</left_joint>
+      <right_joint>front_right_wheel_joint</right_joint>
+      <wheel_separation>0.30</wheel_separation>
+      <wheel_diameter>0.13</wheel_diameter>  <!-- 2 * radius -->
+      <odometry_frame>odom</odometry_frame>
+      <robot_base_frame>base_link</robot_base_frame>
+      <publish_odom>true</publish_odom>
+      <publish_odom_tf>true</publish_odom_tf>
+    </plugin>
+  </gazebo>
+
+  <!-- ========================================================= -->
+  <!-- LIDAR SENSOR PLUGIN -->
+  <!-- ========================================================= -->
+  <gazebo reference="lidar">
+    <sensor type="ray" name="lidar_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>20</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>      <!-- จำนวนเส้น -->
+            <resolution>1</resolution>  <!-- ความละเอียด -->
+            <min_angle>-1.5708</min_angle> <!-- -90° -->
+            <max_angle>1.5708</max_angle>  <!-- +90° (รวม 180°) -->
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.12</min>     <!-- ระยะต่ำสุด -->
+          <max>6.0</max>      <!-- ระยะสูงสุด -->
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+
+<plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_ray_sensor.so">
+  <ros>
+    <namespace>/</namespace>
+    <remapping>~/out:=scan</remapping>
+  </ros>
+  <output_type>sensor_msgs/LaserScan</output_type>
+  <frame_name>lidar</frame_name>
+</plugin>
+
+    </sensor>
+  </gazebo>
+  <!-- ========================================================= -->
+  <!-- IMU SENSOR PLUGIN -->
+  <!-- ========================================================= -->
+  <gazebo reference="imu">
+    <sensor type="imu" name="imu_sensor">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>50</update_rate>
+      <imu>
+        <update_rate>100</update_rate>
+        <gaussian_noise>
+          <linear_acceleration_noise_density>0.02</linear_acceleration_noise_density>
+          <angular_velocity_noise_density>0.01</angular_velocity_noise_density>
+        </gaussian_noise>
+        <bias>
+          <linear_acceleration_bias>0.0 0.0 0.0</linear_acceleration_bias>
+          <angular_velocity_bias>0.0 0.0 0.0</angular_velocity_bias>
+        </bias>
+      </imu>
+      <plugin name="gazebo_ros_imu_sensor" filename="libgazebo_ros_imu.so">
+        <ros>
+          <namespace>/imu</namespace>
+          <remapping>~/out:=imu_data</remapping>
+        </ros>
+        <output_type>sensor_msgs/Imu</output_type>
+        <frame_name>imu</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+</robot>
